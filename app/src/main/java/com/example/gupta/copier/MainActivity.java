@@ -109,7 +109,5 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 //TODO----Fab drawer
-//TODO----pdf support
-//TODO----share support
 //TODO----adding camera permission in manifest causing error
 //TODO----change speak button symbols to pause, stop

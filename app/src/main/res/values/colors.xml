@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimaryDark">#084768</color>
     <color name="colorPrimary">#084768</color>
-    <color name="colorAccent">#0C5B82</color>
+    <color name="colorAccent">#0C5B82</color>//12 91 130
 
     <color name="white">#fff</color>
     <color name="mustard">#e1ad01</color>
