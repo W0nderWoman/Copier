@@ -7,25 +7,42 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView imgph;
+    TextView t_content;
+    TextToSpeech obj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         imgph=findViewById(R.id.img);
+        t_content=findViewById(R.id.t_content);
+
+        //text to speech object
+        obj=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if(i!=TextToSpeech.ERROR){
+                    obj.setLanguage(Locale.UK);
+                }
+            }
+        });
     }
 
     public void capture(View view){
-        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+        final CharSequence[] options = { "Capture", "Choose from Gallery","Cancel" };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setTitle("Add Image!");
@@ -84,7 +101,15 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void speak(View view){
+        String text=t_content.getText().toString();
+
+        obj.speak(text,TextToSpeech.QUEUE_FLUSH,null);
+    }
 }
 //TODO----Fab drawer
 //TODO----pdf support
 //TODO----share support
+//TODO----adding camera permission in manifest causing error
+//TODO----change speak button symbols to pause, stop
