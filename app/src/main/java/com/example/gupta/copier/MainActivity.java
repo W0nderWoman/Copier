@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Path;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AlertDialog;
@@ -111,12 +113,18 @@ public class MainActivity extends AppCompatActivity {
         if(b_sp_state.equals("Speak")){
             String text=t_content.getText().toString();
 
-            obj.speak(text,TextToSpeech.QUEUE_FLUSH,null);
+            //obj.speak(text,TextToSpeech.QUEUE_FLUSH,null);
 
             //TODO----add animation
-            ObjectAnimator objanim=ObjectAnimator.ofFloat(view,"translationX",100f);
-            objanim.setDuration(2000);
-            objanim.start();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Path path = new Path();
+                path.arcTo(0f, 0f, 1000f, 1000f, 270f, -180f, true);
+                ObjectAnimator animator = ObjectAnimator.ofFloat(view, View.X, View.Y, path);
+                animator.setDuration(2000);
+                animator.start();
+            } else {
+                // Create animator without using curved path
+            }
 
             //change to pause button
             b_speak.setImageDrawable(getResources().getDrawable(R.drawable.pausecirclebutton));
