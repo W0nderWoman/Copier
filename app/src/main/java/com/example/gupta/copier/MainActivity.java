@@ -1,5 +1,6 @@
 package com.example.gupta.copier;
 
+import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,6 +12,8 @@ import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.ChangeBounds;
+import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,9 +22,10 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView imgph;
+    ImageView imgph,b_speak;
     TextView t_content;
     TextToSpeech obj;
+    String b_sp_state="Speak";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         imgph=findViewById(R.id.img);
         t_content=findViewById(R.id.t_content);
+        b_speak=findViewById(R.id.b_speak);
 
         //text to speech object
         obj=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
@@ -103,9 +108,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void speak(View view){
-        String text=t_content.getText().toString();
+        if(b_sp_state.equals("Speak")){
+            String text=t_content.getText().toString();
 
-        obj.speak(text,TextToSpeech.QUEUE_FLUSH,null);
+            obj.speak(text,TextToSpeech.QUEUE_FLUSH,null);
+
+            //TODO----add animation
+            ObjectAnimator objanim=ObjectAnimator.ofFloat(view,"translationX",100f);
+            objanim.setDuration(2000);
+            objanim.start();
+
+            //change to pause button
+            b_speak.setImageDrawable(getResources().getDrawable(R.drawable.pausecirclebutton));
+            b_sp_state="Pause";
+        }
+        else if(b_sp_state.equals("Pause")){
+            //change to play button
+            b_speak.setImageDrawable(getResources().getDrawable(R.drawable.playcirclebutton));
+            b_sp_state="Play";
+        }
     }
 }
 //TODO----Fab drawer
