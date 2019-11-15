@@ -32,7 +32,8 @@
             android:layout_margin="32dp"
             android:src="@drawable/rectanglebutton"
             android:layout_gravity="center_vertical"
-            android:onClick="capture"/>
+            android:onClick="capture"
+            android:elevation="16dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +45,8 @@
             android:layout_height="80dp"
             android:layout_margin="8dp"
             android:src="@drawable/circlebutton"
-            android:onClick="speak"/>
+            android:onClick="speak"
+            android:elevation="16dp"/>
         <TextView
             android:id="@+id/t_content"
             android:layout_width="match_parent"

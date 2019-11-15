@@ -118,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
             //TODO----add animation
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Path path = new Path();
-                path.arcTo(0f, 0f, 1000f, 1000f, 270f, -180f, true);
-                ObjectAnimator animator = ObjectAnimator.ofFloat(view, View.X, View.Y, path);
+                path.arcTo(100f, 100f, 0f, 0f, 0f, 0f, true);
+                ObjectAnimator animator = ObjectAnimator.ofFloat(view, view.X, view.Y, path);
                 animator.setDuration(2000);
                 animator.start();
             } else {
