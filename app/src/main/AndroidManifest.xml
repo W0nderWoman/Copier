@@ -19,6 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"></activity>
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="ocr" />
     </application>
 
 </manifest>
