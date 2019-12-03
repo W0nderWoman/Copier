@@ -6,6 +6,10 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
+    <SurfaceView
+        android:id="@+id/surfacev"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
     <LinearLayout
         android:id="@+id/l_imgs"
         android:layout_width="match_parent"
