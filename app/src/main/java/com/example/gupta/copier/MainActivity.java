@@ -242,4 +242,3 @@ public class MainActivity extends AppCompatActivity {
 //TODO----Fab drawer
 //TODO----adding camera permission in manifest causing error
 //TODO----change speak button symbols to pause, stop
-//TODO----make commit
